@@ -1,4 +1,4 @@
-
+let itemsDom = document.querySelector('.items');
 const images = [
     {
         url: 'http://www.viaggiareonline.it/wp-content/uploads/2014/11/sweden_148857365.jpg',
@@ -29,3 +29,59 @@ const images = [
     },
 ];
 
+let slideAttiva = 0;
+
+for (let i = 0; i < images.length; i++) {
+    itemsDom.innerHTML += `
+        <div class="item">
+            <div class="info">
+                <h2>"${images[i].title}"</h2>
+                <p>"${images[i].description}"</p>
+            </div>
+            <img class="img-slide" src="${images[i].url}"/>
+        </div>`
+}
+const itemList = document.getElementsByClassName('item');
+itemList[slideAttiva].classList.add ('show');
+
+const next = document.querySelector('.next');
+next.addEventListener("click",
+    function () {
+        itemList[slideAttiva].classList.remove('show');
+        slideAttiva++;
+        itemList[slideAttiva].classList.add('show');
+        console.log(slideAttiva);
+        if (slideAttiva == 4) {
+            console.log(slideAttiva);
+            next.classList.add('hide');
+        } else {
+            next.classList.remove('hide');        
+        }
+        if (slideAttiva == 0) {
+            prev.classList.add('hide');
+        } else {
+            prev.classList.remove('hide');
+        }
+    }
+)
+
+
+const prev = document.querySelector('.prev');
+prev.addEventListener("click",
+    function () {
+        itemList[slideAttiva].classList.remove('show');
+        slideAttiva--;
+        itemList[slideAttiva].classList.add('show');
+        if (slideAttiva == 0) {
+            prev.classList.add('hide');
+        } else {
+            prev.classList.remove('hide');
+        }
+        if (slideAttiva == 4) {
+            console.log(slideAttiva);
+            next.classList.add('hide');
+        } else {
+            next.classList.remove('hide');        
+        }
+    }
+)
