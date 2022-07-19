@@ -1,4 +1,5 @@
 let itemsDom = document.querySelector('.items');
+let smallImg = document.querySelector('.small-slides');
 const images = [
     {
         url: 'http://www.viaggiareonline.it/wp-content/uploads/2014/11/sweden_148857365.jpg',
@@ -35,11 +36,15 @@ for (let i = 0; i < images.length; i++) {
     itemsDom.innerHTML += `
         <div class="item">
             <div class="info">
-                <h2>"${images[i].title}"</h2>
-                <p>"${images[i].description}"</p>
+                <h2>${images[i].title}</h2>
+                <p>${images[i].description}</p>
             </div>
-            <img class="img-slide" src="${images[i].url}"/>
-        </div>`
+            <img src="${images[i].url}"/>
+        </div>`;
+    smallImg.innerHTML += `
+        <div class="small-img">
+            <img class="img-slide" src="${images[i].url}"
+        </div>    `
 }
 const itemList = document.getElementsByClassName('item');
 itemList[slideAttiva].classList.add ('show');
@@ -83,5 +88,14 @@ prev.addEventListener("click",
         } else {
             next.classList.remove('hide');        
         }
+    }
+)
+let thumbnail = document.getElementsByClassName('img-slide');
+thumbnail[slideAttiva].classList.add ('attiva');
+thumbnail.addEventListener("click",
+    function () {
+        thumbnail[slideAttiva].classList.remove('attiva');
+        slideAttiva;
+        thumbnail[slideAttiva].classList.add('attiva');
     }
 )
