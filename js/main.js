@@ -46,6 +46,9 @@ for (let i = 0; i < images.length; i++) {
             <img class="img-slide" src="${images[i].url}"
         </div>    `
 }
+let thumbnail = document.querySelectorAll('.img-slide');
+thumbnail[slideAttiva].classList.add ('attiva');
+
 const itemList = document.getElementsByClassName('item');
 itemList[slideAttiva].classList.add ('show');
 
@@ -53,8 +56,17 @@ const next = document.querySelector('.next');
 next.addEventListener("click",
     function () {
         itemList[slideAttiva].classList.remove('show');
-        slideAttiva++;
+        thumbnail[slideAttiva].classList.remove('attiva');
+
+        if (slideAttiva == images.lenght - 1) {
+            slideAttiva = 0;
+        } else {
+            slideAttiva++;
+        }
+        
+
         itemList[slideAttiva].classList.add('show');
+        thumbnail[slideAttiva].classList.add('attiva');
         console.log(slideAttiva);
         if (slideAttiva == 4) {
             console.log(slideAttiva);
@@ -75,8 +87,10 @@ const prev = document.querySelector('.prev');
 prev.addEventListener("click",
     function () {
         itemList[slideAttiva].classList.remove('show');
+        thumbnail[slideAttiva].classList.remove('attiva');
         slideAttiva--;
         itemList[slideAttiva].classList.add('show');
+        thumbnail[slideAttiva].classList.add('attiva');
         if (slideAttiva == 0) {
             prev.classList.add('hide');
         } else {
@@ -90,12 +104,5 @@ prev.addEventListener("click",
         }
     }
 )
-let thumbnail = document.getElementsByClassName('img-slide');
-thumbnail[slideAttiva].classList.add ('attiva');
-thumbnail.addEventListener("click",
-    function () {
-        thumbnail[slideAttiva].classList.remove('attiva');
-        slideAttiva;
-        thumbnail[slideAttiva].classList.add('attiva');
-    }
-)
+
+
